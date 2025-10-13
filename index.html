@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toprak Tuncer - Engineering Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .logo span {
+            color: #3498db;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 16px;
+        }
+        
+        .nav-links a:hover {
+            color: #3498db;
+        }
+        
+        .nav-links a.active {
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 100px 80px 50px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Animated Network Background */
+        .network-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.4;
+            z-index: 1;
+        }
+        
+        .dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #3498db;
+            border-radius: 50%;
+            animation: float 4s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .hero-content {
+            flex: 1;
+            max-width: 600px;
+            z-index: 10;
+            animation: fadeInLeft 1s ease;
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .hero-content h1 {
+            font-size: 52px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+            line-height: 1.2;
+        }
+        
+        .hero-content h1 .highlight {
+            color: #e67e22;
+        }
+        
+        .hero-subtitle {
+            font-size: 20px;
+            color: #34495e;
+            margin-bottom: 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            margin-bottom: 30px;
+        }
+        
+        .cta-button:hover {
+            background: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background: #2c3e50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: #3498db;
+            transform: translateY(-5px);
+        }
+        
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            animation: fadeInRight 1s ease;
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .avatar-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+        
+        .yellow-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%);
+            border-radius: 50%;
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .avatar-placeholder {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 180px;
+            z-index: 2;
+        }
+        
+        /* Floating Contact Card */
+        .floating-contact {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            z-index: 1000;
+            animation: slideInLeft 1s ease 0.5s both;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .floating-contact-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-avatar {
+            width: 50px;
+            height: 50px;
+            background: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .contact-info h4 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 16px;
+        }
+        
+        .contact-info p {
+            margin: 0;
+            color: #7f8c8d;
+            font-size: 13px;
+        }
+        
+        .contact-button {
+            display: block;
+            background: #3498db;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .contact-button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 80px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 42px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .section-subtitle {
+            font-size: 18px;
+            color: #7f8c8d;
+            margin-bottom: 50px;
+        }
+        
+        /* About Section */
+        #about {
+            background: white;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        
+        .about-text {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #34495e;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+        }
+        
+        .competencies {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #3498db;
+        }
+        
+        .competencies h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        
+        .competency-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #34495e;
+        }
+        
+        .competency-item::before {
+            content: '▸';
+            color: #3498db;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        /* Education Section */
+        #education {
+            background: #f8f9fa;
+        }
+        
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+        }
+        
+        .education-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border-top: 5px solid #3498db;
+        }
+        
+        .education-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+        }
+        
+        .edu-degree {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .edu-school {
+            font-size: 18px;
+            color: #3498db;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .edu-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            font-size: 15px;
+            color: #7f8c8d;
+        }
+        
+        .edu-focus {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #ecf0f1;
+        }
+        
+        .edu-focus strong {
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        /* Skills Section */
+        #skills {
+            background: white;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .skill-category {
+            background: #f8f9fa;
+            padding: 35px;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+        
+        .skill-category:hover {
+            background: white;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        
+        .skill-category h3 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .skill-category h3::before {
+            content: '';
+            width: 5px;
+            height: 25px;
+            background: #3498db;
+            border-radius: 3px;
+        }
+        
+        .skill-item {
+            margin-bottom: 20px;
+        }
+        
+        .skill-name {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-size: 15px;
+        }
+        
+        .skill-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3498db, #2ecc71);
+            border-radius: 10px;
+            transition: width 1.5s ease;
+        }
+        
+        .languages-box {
+            margin-top: 50px;
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .languages-box h3 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 24px;
+            text-align: center;
+        }
+        
+        .language-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 2px solid #e0e0e0;
+            font-size: 16px;
+        }
+        
+        .language-item:last-child {
+            border-bottom: none;
+        }
+        
+        .lang-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .lang-level {
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        /* Experience Section */
+        #experience {
+            background: #f8f9fa;
+        }
+        
+        .experience-timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 60px;
+        }
+        
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 25px;
+            top: 20px;
+            bottom: 20px;
+            width: 4px;
+            background: linear-gradient(180deg, #3498db, #2ecc71);
+        }
+        
+        .experience-item {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 35px rgba(0,0,0,0.12);
+        }
+        
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -50px;
+            top: 45px;
+            width: 18px;
+            height: 18px;
+            background: #3498db;
+            border: 5px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px #3498db;
+        }
+        
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .exp-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .exp-company {
+            font-size: 20px;
+            color: #3498db;
+            font-weight: 600;
+        }
+        
+        .exp-date {
+            background: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .exp-location {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        
+        .exp-description ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .exp-description li {
+            padding-left: 30px;
+            margin-bottom: 15px;
+            position: relative;
+            color: #34495e;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        
+        .exp-description li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #3498db;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        /* Projects Section */
+        #projects {
+            background: white;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 35px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border: 2px solid #ecf0f1;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            border-color: #3498db;
+        }
+        
+        .project-header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 30px;
+        }
+        
+        .project-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .project-meta {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .project-body {
+            padding: 30px;
+        }
+        
+        .project-description {
+            color: #34495e;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-size: 15px;
+        }
+        
+        .project-highlights {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .project-highlights li {
+            padding-left: 25px;
+            margin-bottom: 12px;
+            position: relative;
+            color: #34495e;
+            font-size: 14px;
+        }
+        
+        .project-highlights li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #2ecc71;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .project-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #ecf0f1;
+        }
+        
+        .skill-tag {
+            background: #e8f4fd;
+            color: #2c3e50;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        
+        /* Certificates Section */
+        #certificates {
+            background: #f8f9fa;
+        }
+        
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .certificate-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid #3498db;
+            transition: all 0.3s;
+        }
+        
+        .certificate-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+        }
+        
+        .cert-title {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 17px;
+        }
+        
+        .cert-issuer {
+            color: #3498db;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        /* Contact Section */
+        #contact {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 80px;
+        }
+        
+        #contact .section-title {
+            color: white;
+        }
+        
+        #contact .section-subtitle {
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 50px auto 0;
+        }
+        
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
+        }
+        
+        .contact-item h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-item p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+        
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+        
+        footer p {
+            opacity: 0.8;
+        }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #2c3e50;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero {
+                padding: 100px 40px 50px;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+            }
+            
+            .hero-content h1 {
+                font-size: 42px;
+            }
+            
+            .avatar-container {
+                width: 300px;
+                height: 300px;
+                margin-top: 40px;
+            }
+            
+            .section {
+                padding: 60px 40px;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            nav {
+                padding: 20px 30px;
+            }
+            
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: white;
+                flex-direction: column;
+                padding: 40px;
+                transition: left 0.3s;
+                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .floating-contact {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 36px;
+            }
+            
+            .section-title {
+                font-size: 32px;
+            }
+            
+            .education-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .experience-timeline {
+                padding-left: 40px;
+            }
+            
+            .experience-item::before {
+                left: -35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Toprak <span>Tuncer</span></div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="network-bg" id="networkBg"></div>
+        
+        <div class="hero-content">
+            <h1>Hi There,<br>I'm <span class="highlight">Toprak Tuncer</span></h1>
+            <p class="hero-subtitle">Electrical & Electronics Engineer</p>
+            <a href="#about" class="cta-button">About Me ➜</a>
+            
+            <div class="social-links">
+                <a href="https://linkedin.com/in/toprak-tuncer" class="social-icon" target="_blank" title="LinkedIn">in</a>
+                <a href="https://github.com" class="social-icon" target="_blank" title="GitHub">𝔾</a>
+                <a href="mailto:topraktuncer0@gmail.com" class="social-icon" title="Email">✉</a>
+                <a href="tel:+905363931194" class="social-icon" title="Phone">📱</a>
+            </div>
+        </div>
+        
+        <div class="hero-image">
+            <div class="avatar-container">
+                <div class="yellow-circle"></div>
+                <div class="avatar-placeholder">👨‍💼</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Contact Card -->
+    <div class="floating-contact">
+        <div class="floating-contact-header">
+            <div class="contact-avatar">TT</div>
+            <div class="contact-info">
+                <h4>Toprak Tuncer</h4>
+                <p>Available for opportunities</p>
+            </div>
+        </div>
+        <a href="#contact" class="contact-button">Get In Touch</a>
+    </div>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle">Bridging Traditional Manufacturing with Next-Generation Smart Systems</p>
+        
+        <div class="about-content">
+            <div class="about-text">
+                <p>I am a fourth-year Electrical & Electronics Engineering student at Yaşar University with a demonstrated passion for industrial optimization and smart manufacturing. My academic journey has been complemented by hands-on experience at Mitsubishi Electric Turkey, where I led a comprehensive production line optimization project that delivered measurable efficiency improvements.</p>
+                
+                <p>My technical expertise spans power systems, embedded systems, telecommunications, and communication systems, with a specialized focus on Industry 4.0 integration through AI and IoT technologies.</p>
+                
+                <p>I approach engineering challenges with a data-driven mindset, combining theoretical knowledge with practical problem-solving skills to create sustainable and efficient technological solutions.</p>
+            </div>
+            
+            <div class="competencies">
+                <h3>Core Competencies</h3>
+                <div class="competency-item">Industrial Process Optimization</div>
+                <div class="competency-item">Embedded Systems Design</div>
+                <div class="competency-item">PCB Design & Manufacturing</div>
+                <div class="competency-item">IoT & Automation Integration</div>
+                <div class="competency-item">Data-Driven Analysis</div>
+                <div class="competency-item">Signal Processing & MATLAB</div>
+                <div class="competency-item">Power Electronics & Systems</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section" id="education">
+        <h2 class="section-title">Education</h2>
+        <p class="section-subtitle">Building a Strong Foundation in Electrical Engineering</p>
+        
+        <div class="education-grid">
+            <div class="education-card">
+                <div class="edu-degree">B.Sc. Electrical & Electronics Engineering</div>
+                <div class="edu-school">Yaşar University</div>
+                <div class="edu-meta">
+                    <span>📍 İzmir, Turkey</span>
+                    <span>📅 2022 - 2026</span>
+                </div>
+                <div class="edu-focus">
+                    <strong>Focus Areas:</strong>
+                    Power Systems • Embedded Systems • Telecommunication • Communication Systems • Industrial Automation • AI/IoT Integration
+                </div>
+            </div>
+            
+            <div class="education-card">
+                <div class="edu-degree">High School Diploma</div>
+                <div class="edu-school">İzmir Özel Türk Koleji</div>
+                <div class="edu-meta">
+                    <span>📍 İzmir, Turkey</span>
+                    <span>📅 2018 - 2022</span>
+                </div>
+                <div class="edu-focus">
+                    Strong foundation in mathematics, physics, and analytical thinking that prepared me for advanced engineering studies and complex problem-solving.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <h2 class="section-title">Technical Skills</h2>
+        <p class="section-subtitle">Comprehensive Engineering Expertise Across Multiple Domains</p>
+        
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Embedded Systems & Hardware</h3>
+                <div class="skill-item">
+                    <div class="skill-name">Embedded Systems & Microcontrollers</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">Circuit & PCB Design</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">PCB Manufacturing & Production</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3>Software & Analysis</h3>
+                <div class="skill-item">
+                    <div class="skill-name">MATLAB/Simulink</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">Signal Processing</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">Data Analysis & Process Optimization</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-category">
+                <h3>Industry 4.0 Technologies</h3>
+                <div class="skill-item">
+                    <div class="skill-name">Industrial Automation & IoT</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">Process Improvement Methodologies</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">Production Line Analysis</div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="languages-box">
+            <h3>Languages</h3>
+            <div class="language-item">
+                <span class="lang-name">Turkish</span>
+                <span class="lang-level">Native</span>
+            </div>
+            <div class="language-item">
+                <span class="lang-name">English</span>
+                <span class="lang-level">Fluent (C1/C2)</span>
+            </div>
+            <div class="language-item">
+                <span class="lang-name">French</span>
+                <span class="lang-level">Elementary (A2)</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section" id="experience">
+        <h2 class="section-title">Internship Experience</h2>
+        <p class="section-subtitle">Real-World Application of Engineering Principles</p>
+        
+        <div class="experience-timeline">
+            <div class="experience-item">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-title">PCB Production Engineering Intern</div>
+                        <div class="exp-company">Mitsubishi Electric Turkey</div>
+                    </div>
+                    <div class="exp-date">Aug - Oct 2025</div>
+                </div>
+                <div class="exp-location">📍 Manisa, Turkey</div>
+                
+                <div class="exp-description">
+                    <ul>
+                        <li>Spearheaded comprehensive time studies and cycle time analysis across PCB production lines, successfully identifying critical bottlenecks that significantly impacted manufacturing throughput and efficiency</li>
+                        <li>Led the "Cycle Time Analysis & Production Line Optimization Project," delivering actionable improvement recommendations that resulted in measurable efficiency gains for manufacturing operations</li>
+                        <li>Applied data-driven analytical approaches to reduce process variations and enhance overall line performance, demonstrating proficiency in industrial process optimization methodologies</li>
+                        <li>Collaborated effectively with cross-functional engineering teams to implement practical solutions in a real industrial environment, bridging theoretical knowledge with hands-on application</li>
+                        <li>Developed advanced analytical skills in industrial process optimization, lean manufacturing principles, and continuous improvement methodologies through direct exposure to industry-leading practices</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <h2 class="section-title">Key Projects</h2>
+        <p class="section-subtitle">Engineering Solutions from Concept to Implementation</p>
+        
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Production Line Optimization Using Time Study</div>
+                    <div class="project-meta">Mitsubishi Electric • Aug - Oct 2025</div>
+                </div>
+                <div class="project-body">
+                    <div class="project-description">
+                        Conducted comprehensive time studies on PCB production lines to identify bottlenecks, analyze inefficiencies, and propose practical improvement solutions.
+                    </div>
+                    <ul class="project-highlights">
+                        <li>Optimized cycle times and increased throughput through systematic analysis</li>
+                        <li>Applied continuous process improvement methodologies to manufacturing workflows</li>
+                        <li>Delivered data-driven recommendations that enhanced production efficiency</li>
+                    </ul>
+                    <div class="project-skills">
+                        <span class="skill-tag">PCB Production</span>
+                        <span class="skill-tag">Process Optimization</span>
+                        <span class="skill-tag">Automation</span>
+                        <span class="skill-tag">Continuous Improvement</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Arduino-Based Item Removal Alarm System</div>
+                    <div class="project-meta">University Project</div>
+                </div>
+                <div class="project-body">
+                    <div class="project-description">
+                        Designed and implemented an embedded security system using Arduino microcontroller with sensor integration, demonstrating proficiency in embedded programming and hardware-software integration for IoT applications.
+                    </div>
+                    <div class="project-skills">
+                        <span class="skill-tag">Arduino</span>
+                        <span class="skill-tag">Embedded Systems</span>
+                        <span class="skill-tag">IoT</span>
+                        <span class="skill-tag">C/C++</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Active Band-Pass Filter Design</div>
+                    <div class="project-meta">Circuit Design Project</div>
+                </div>
+                <div class="project-body">
+                    <div class="project-description">
+                        Engineered precision analog filter circuit with specific frequency response characteristics, applying signal processing theory and operational amplifier configurations for communication systems.
+                    </div>
+                    <div class="project-skills">
+                        <span class="skill-tag">Analog Design</span>
+                        <span class="skill-tag">Signal Processing</span>
+                        <span class="skill-tag">Op-Amps</span>
+                        <span class="skill-tag">Filter Theory</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">AC-DC Power Adapter Design</div>
+                    <div class="project-meta">Power Electronics Project</div>
+                </div>
+                <div class="project-body">
+                    <div class="project-description">
+                        Developed regulated power supply system including transformer design, rectification, filtering, and voltage regulation circuits, demonstrating expertise in power electronics fundamentals.
+                    </div>
+                    <div class="project-skills">
+                        <span class="skill-tag">Power Electronics</span>
+                        <span class="skill-tag">Circuit Design</span>
+                        <span class="skill-tag">Voltage Regulation</span>
+                        <span class="skill-tag">Transformers</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Digital Logic & TTL Implementation</div>
+                    <div class="project-meta">Digital Systems Project</div>
+                </div>
+                <div class="project-body">
+                    <div class="project-description">
+                        Implemented complex digital logic functions using TTL ICs, applying Boolean algebra optimization and digital design principles for efficient circuit realization.
+                    </div>
+                    <div class="project-skills">
+                        <span class="skill-tag">Digital Logic</span>
+                        <span class="skill-tag">TTL Design</span>
+                        <span class="skill-tag">Boolean Algebra</span>
+                        <span class="skill-tag">Circuit Optimization</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section class="section" id="certificates">
+        <h2 class="section-title">Certificates & Achievements</h2>
+        <p class="section-subtitle">Continuous Learning and Professional Development</p>
+        
+        <div class="certificates-grid">
+            <div class="certificate-card">
+                <div class="cert-title">Spectral Analysis Techniques</div>
+                <div class="cert-issuer">MathWorks</div>
+            </div>
+            
+            <div class="certificate-card">
+                <div class="cert-title">Signal Generation and Resampling</div>
+                <div class="cert-issuer">MathWorks</div>
+            </div>
+            
+            <div class="certificate-card">
+                <div class="cert-title">Core Signal Processing Techniques in MATLAB</div>
+                <div class="cert-issuer">MathWorks</div>
+            </div>
+            
+            <div class="certificate-card">
+                <div class="cert-title">Matrix Operations & Manipulation</div>
+                <div class="cert-issuer">MathWorks</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Let's Connect and Explore Opportunities Together</p>
+        
+        <div class="contact-grid">
+            <div class="contact-item">
+                <h3>📧 Email</h3>
+                <p><a href="mailto:topraktuncer0@gmail.com">topraktuncer0@gmail.com</a></p>
+            </div>
+            
+            <div class="contact-item">
+                <h3>📱 Phone</h3>
+                <p><a href="tel:+905363931194">+90 536 393 11 94</a></p>
+            </div>
+            
+            <div class="contact-item">
+                <h3>🔗 LinkedIn</h3>
+                <p><a href="https://linkedin.com/in/toprak-tuncer" target="_blank">linkedin.com/in/toprak-tuncer</a></p>
+            </div>
+            
+            <div class="contact-item">
+                <h3>📍 Location</h3>
+                <p>İzmir, Türkiye</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Toprak Tuncer. All rights reserved. | Electrical & Electronics Engineering Student</p>
+    </footer>
+
+    <script>
+        // Animated network background
+        function createNetworkDots() {
+            const container = document.getElementById('networkBg');
+            const numDots = 50;
+            
+            for (let i = 0; i < numDots; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot';
+                dot.style.left = Math.random() * 100 + '%';
+                dot.style.top = Math.random() * 100 + '%';
+                dot.style.animationDelay = Math.random() * 4 + 's';
+                container.appendChild(dot);
+            }
+        }
+        
+        createNetworkDots();
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('navLinks').classList.remove('active');
+                    
+                    // Update active link
+                    document.querySelectorAll('.nav-links a').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+        
+        // Highlight active section in navigation
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section, .hero, #contact');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Animate skill bars on scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillFills = entry.target.querySelectorAll('.skill-fill');
+                    skillFills.forEach(fill => {
+                        fill.style.width = fill.style.width;
+                    });
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.skill-category').forEach(category => {
+            observer.observe(category);
+        });
+    </script>
+</body>
+</html>
